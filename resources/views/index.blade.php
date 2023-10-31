@@ -3,8 +3,8 @@
         <title>XLR8 - Search Hotels</title>
     </head>
 
-    <body
-        <form method="POST">
+    <body>
+        <form action="/" method="POST">
             @csrf
 
             <div>
@@ -13,12 +13,11 @@
             </div>
 
             <div style="margin-top: 5px">
-                <label for="latitude">Longitude</label>
-                <input id="latitude" maxlength="12" name="latitude" type="text" required>
+                <label for="longitude">Longitude</label>
+                <input id="longitude" maxlength="12" name="longitude" type="text" required>
             </div>
 
             <input style="margin-top: 5px" type="submit" value="Search">
         </form>
     </body>
 </html>
-
