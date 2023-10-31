@@ -18,24 +18,25 @@ class ApiAction
         return $this->hotels;
     }
 
+    private function request(): void
+    {
+        try {
+            for ($i = 1; ; $i++) {
+                $res = $this->getClient()->request('GET', $this->getUrl(sourceId: $i));
+                $this->hotels[$i] = json_decode($res->getBody(), true);
+            }
+        } catch (ClientException $e) {
+            return;
+        }
+    }
+
     private function getClient(): Client
     {
         return new Client();
     }
 
-    private function request(): void
+    private function getUrl(int $sourceId): string
     {
-        try {
-            for ($sourceId = 1; ; $sourceId++) {
-                $res = $this->getClient()->request(
-                    'GET',
-                    self::BASE_URL . 'source_' . $sourceId . '.json'
-                );
-
-                $this->hotels[$sourceId] = json_decode($res->getBody(), true);
-            }
-        } catch (ClientException $e) {
-            return;
-        }
+        return self::BASE_URL . 'source_' . $sourceId . '.json';
     }
 }
