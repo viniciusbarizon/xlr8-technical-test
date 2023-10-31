@@ -27,15 +27,22 @@ class ApiActionTest extends TestCase
         $this->hotels = (new ApiAction)->getHotels();
     }
 
+    private function getClient(): Client
+    {
+        return new Client();
+    }
+
     private function setApiHotels(): void
     {
-        $client = new Client();
-        $sourceId = 1;
-
         try {
-            $res = $client->request('GET', self::BASE_URL . 'source_' . $sourceId . '.json');
-            $this->apiHotels[$sourceId] = json_decode($res->getBody(), true);
-            $sourceId++;
+            for ($sourceId = 1; ; $sourceId++) {
+                $res = $this->getClient()->request(
+                    'GET',
+                    self::BASE_URL . 'source_' . $sourceId . '.json'
+                );
+
+                $this->apiHotels[$sourceId] = json_decode($res->getBody(), true);
+            }
         } catch (ClientException $e) {
             return;
         }
