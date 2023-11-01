@@ -7,7 +7,7 @@ use App\Models\Hotel;
 
 class ImportAction
 {
-    private string $hotels;
+    private array $hotels;
 
     public function import(array $hotels): void
     {
@@ -24,7 +24,7 @@ class ImportAction
 
     private function insert(): void
     {
-        foreach ($hotels as $hotel) {
+        foreach ($this->hotels as $hotel) {
             Hotel::create($this->addKeys($hotel));
         }
     }
