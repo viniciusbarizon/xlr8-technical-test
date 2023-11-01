@@ -4,7 +4,7 @@
     </head>
 
     <body>
-        <form action="/" method="POST">
+        <form action="/search" method="POST">
             @csrf
 
             <div>

@@ -23,7 +23,7 @@ class ApiAction
         try {
             for ($i = 1; ; $i++) {
                 $res = $this->getClient()->request('GET', $this->getUrl(sourceId: $i));
-                $this->hotels[$i] = json_decode($res->getBody(), true);
+                $this->hotels[$i] = json_decode($res->getBody(), true)['message'];
             }
         } catch (ClientException $e) {
             return;

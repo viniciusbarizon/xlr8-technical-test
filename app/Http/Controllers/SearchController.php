@@ -17,13 +17,11 @@ class SearchController extends Controller
 
     public function search(): View
     {
-        $this->setHotels();
-
         return view("index");
     }
 
     private function setHotels(): void
     {
-        $this->hotels = (new ApiAction)->getHotels();
+
     }
 }
