@@ -15,8 +15,13 @@ return new class extends Migration
             $table->ulid('id');
             $table->primary('id');
 
-            $table->point('latitude')->index();
-            $table->point('longitude')->index();
+            $table->string('name')->index();
+            $table->decimal('latitude', $precision = 18, $scale = 15)
+                ->nullable()
+                ->index();
+            $table->decimal('longitude', $precision = 18, $scale = 15)
+                ->nullable()
+                ->index();
             $table->decimal('price_per_night', $precision = 8, $scale = 2)->index();
 
             $table->timestamp('created_at')->useCurrent();

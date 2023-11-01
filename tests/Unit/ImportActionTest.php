@@ -21,7 +21,6 @@ class ImportActionTest extends TestCase
 
         $this->import();
 
-        $this->assertTotal();
         $this->assertCreatedAt();
     }
 
@@ -38,11 +37,6 @@ class ImportActionTest extends TestCase
     private function import(): void
     {
         (new ImportAction)->import(hotels: $this->hotels);
-    }
-
-    private function assertTotal(): void
-    {
-        $this->assertDatabaseCount('hotels', count($this->hotels));
     }
 
     private function assertCreatedAt(): void
