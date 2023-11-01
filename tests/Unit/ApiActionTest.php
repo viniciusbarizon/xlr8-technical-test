@@ -11,14 +11,13 @@ class ApiActionTest extends TestCase
 {
     const BASE_URL = "https://xlr8-interview-files.s3.eu-west-2.amazonaws.com/";
 
-    private array $apiHotels;
+    private array $apiHotels = [];
     private array $hotels;
 
     public function test_it_gets_hotels_from_api(): void
     {
         $this->setHotels();
         $this->setApiHotels();
-
         $this->assertHotels();
     }
 
@@ -32,7 +31,10 @@ class ApiActionTest extends TestCase
         try {
             for ($i = 1; ; $i++) {
                 $res = $this->getClient()->request('GET', $this->getUrl(sourceId: $i));
-                $this->apiHotels[$i] = json_decode($res->getBody(), true)['message'];
+                $this->apiHotels = array_merge(
+                    $this->apiHotels,
+                    json_decode($res->getBody(), true)['message']
+                );
             }
         } catch (ClientException $e) {
             return;
@@ -51,8 +53,6 @@ class ApiActionTest extends TestCase
 
     private function assertHotels(): void
     {
-        foreach ($this->apiHotels as $sourceId => $list) {
-            $this->assertEquals($list, $this->hotels[$sourceId]);
-        }
+        $this->assertEquals($this->apiHotels, $this->hotels);
     }
 }
