@@ -17,11 +17,6 @@ class ImportAction
         $this->insert();
     }
 
-    private function removeSourceId(): void
-    {
-        $this->hotels = Arr::flatten($this->hotels);
-    }
-
     private function truncate(): void
     {
         Hotel::truncate();
