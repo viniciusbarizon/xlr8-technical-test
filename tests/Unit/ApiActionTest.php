@@ -32,7 +32,7 @@ class ApiActionTest extends TestCase
         try {
             for ($i = 1; ; $i++) {
                 $res = $this->getClient()->request('GET', $this->getUrl(sourceId: $i));
-                $this->apiHotels[$i] = json_decode($res->getBody(), true);
+                $this->apiHotels[$i] = json_decode($res->getBody(), true)['message'];
             }
         } catch (ClientException $e) {
             return;
