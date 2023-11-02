@@ -27,5 +27,11 @@
 
             <input style="margin-top: 5px" type="submit" value="Search">
         </form>
+
+        <ul>
+            <li>Hotel 1, 1km, 100 EUR</li>
+            <li>Hotel 1, 1km, 100 EUR</li>
+            <li>Hotel 1, 1km, 100 EUR</li>
+        </ul>
     </body>
 </html>
