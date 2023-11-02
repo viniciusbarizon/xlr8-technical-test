@@ -21,17 +21,21 @@
                 <label for="order_by">Order by</label>
                 <select name="order_by">
                     <option value="proximity">Proximity</option>
-                    <option value="pricepernight">Price per night</option>
+                    <option value="price_per_night">Price per night</option>
                 <select>
             </div>
 
             <input style="margin-top: 5px" type="submit" value="Search">
         </form>
 
-        <ul>
-            <li>Hotel 1, 1km, 100 EUR</li>
-            <li>Hotel 1, 1km, 100 EUR</li>
-            <li>Hotel 1, 1km, 100 EUR</li>
-        </ul>
+        @isset ($hotels)
+            <ul>
+                @foreach ($hotels as $hotel)
+                    <li>
+                        {{ $hotel->name }}, 1km, {{ $hotel->price_per_night }} EUR
+                    </li>
+                @endforeach
+            </ul>
+        @endisset
     </body>
 </html>
